@@ -138,3 +138,20 @@ zeroto n = [0..n]
 * In these examples we have followed the Haskell convention of preceding function definitions by their types, which serves as useful documentation.
   * Any such types provided manually by the user are checked for consistency with the types calculated automatically using type inference.
 * Note that there is no restriction that functions must be **total** on their argument type, in the sense that there may be some arguments for which the result is not defined. For example, the result of the library function `head` that selects the first element of a list is undefined if the list is empty.
+
+### Curried functions
+* Functions with multiple arguments can also be handled in another, perhaps less obvious way, by exploiting the fact that functions are free to return functions as results. For example, consider the following definition:
+```Haskell
+add' :: Int -> (Int -> Int)
+add' x y = x+y
+
+```
+* The type states that `add'` is a function that takes an argument of type `Int`, and returns a result that is a function of type `Int -> Int`.
+* The definition itself states that `add'` takes an integer `x` followed by an integer `y`, and returns the result `x+y`. More precisely, `add'` takes an integer `x` and returns a function, which in turn takes an integer `y` and returns the result `x+y`.
+* Functions that take their arguments one at a time are called **curried functions**.
+  * Curried functions are more flexible than functions on tuples, because useful functions can often be made by partially applying a curried function with less than its full complement of arguments.
+
+
+
+
+
