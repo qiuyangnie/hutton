@@ -93,6 +93,59 @@ We conclude this section by noting that a single number may have more than one n
 ```
 * Finally, there is no restriction that a list must have a finite length. In particular, due to the use of lazy evaluation in Haskell, lists with an infinite length are both natural and practical.
 
+### Tuple types
+* A **tuple** is a finite sequence of **components** of possibly different types, with the components being enclosed in round parentheses and separated by commas.
+* We write `(T1,T2,...,Tn)` for the type of all tuples whose `ith` components have type `Ti` for any `i` in the range `1` to `n`. For example:
+```Haskell
+(False,True) :: (Bool,Bool)
+(False,'a',True) :: (Bool,Char,Bool)
+("Yes",True,'a') :: (String,Bool,Char)
+
+```
+* The number of components in a tuple is called its **arity**.
+* The tuple `()` of arity zero is called the empty tuple, tuples of arity two are called pairs, tuples of arity three are called triples, and so on. Tuples of arity one, such as `(False)`, are not permitted because they would conflict with the use of parentheses to make the evaluation order explicit, such as in `(1+2)*3`.
+* There are three further points to note about tuple types.
+  * First of all, the type of a tuple conveys its arity. For example, the type `(Bool,Char)` contains all pairs comprising a first component of type `Bool` and a second component of type `Char`.
+  * Secondly, there are no restrictions on the types of the components of a tuple. For example:
+```Haskell
+('a',(False,'b')) :: (Char,(Bool,Char))
+(['a','b'],[False,True]) :: ([Char],[Bool])
+[('a',False),('b',True)] :: [(Char,Bool)]
+
+```
+* Finally, note that tuples must have a finite arity, in order to ensure that tuple types can always be inferred prior to evaluation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
