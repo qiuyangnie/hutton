@@ -45,9 +45,35 @@ is well-typed, but produces an error when evaluated because the result of divisi
 * For example, the conditional expression `if True then 1 else False` evaluates to the number `1`, but contains a type error and is hence deemed invalid.
 
 
+### Basic types
+#### `Bool` - logical values
+* This type contains the two logical values `False` and `True`.
+
+#### `Char` - single characters
+* This type contains all single characters in the Unicode system, the international standard for representing text-based information.
+
+#### `String` - strings of characters
+* This type contains all sequence of characters.
+
+#### `Int` - fixed-precision integers
+* This type contains integers such as `-100`, `0`, and `999`, with a fixed amount of memory being used for their storage.
+
+#### `Integer` - arbitrary-precision integers
+* This type contains all integers, with as much memory as necessary being used for their storage, thus avoiding the imposition of lower and upper limits on the range of numbers.
+* Apart from that, the choice between these two types is also one of performance.
+  * In particular, most computers have built-in hardware for fixed-precision integers, whereas arbitrary-precision integers are usually processed using the slower medium of software, as sequences of digits.
+
+#### `Float` - single-precision floating-point numbers
+* This type contains numbers with a decimal point, such as `-12.34`, `1.0`, and `3.1415927`, with a fixed amount of memory being used for their storage.
+* The term **floating-point** comes from the fact that the number of digits permitted after the decimal point depends upon the size of the number.
+* For example, evaluating `sqrt 2 :: Float` using GHCi gives the result `1.4142135` (the library function `sqrt` calculates the square root of a floating-point number), which has seven digits after the decimal point, whereas `sqrt 99999 :: Float` gives `316.2262`, which only has four digits after the point.
+
+#### `Double` - double-precision floating-point numbers
+* This type is similar to `Float`, except that twice as much memory is used for storage of these numbers to increase their precision.
+* Using floating-point numbers is a specialist topic that requires a careful treatment of rounding errors.
 
 
-
+We conclude this section by noting that a single number may have more than one numeric type. For example, the number `3` could have type `Int`, `Integer`, `Float` or `Double`. This raises the interesting question of what type such numbers should be assigned during the process of type inference, which will be answered later in this chapter when we consider type classes.
 
 
 
