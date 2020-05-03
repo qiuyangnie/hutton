@@ -75,6 +75,25 @@ is well-typed, but produces an error when evaluated because the result of divisi
 
 We conclude this section by noting that a single number may have more than one numeric type. For example, the number `3` could have type `Int`, `Integer`, `Float` or `Double`. This raises the interesting question of what type such numbers should be assigned during the process of type inference, which will be answered later in this chapter when we consider type classes.
 
+### List types
+* A **list** is a sequence of elements of the same type, with the elements being enclosed in square parentheses and separated by commas. We write `[T]` for the type of all lists whose elements have type `T`. For example:
+```Haskell
+[False,True,False] :: [Bool]
+['a','b','c','d'] :: [Char]
+["One","Two","Three"] :: [String]
+
+```
+* The number of elements in a list is called its **length**. 
+* The list `[]` of length zero is called the empty list, while lists of length one, such as `[False]`, `['a']`, and `[[]]` are called singleton lists.
+* There are three further points to note about list types. 
+  * First of all, the type of a list conveys no information about its length. For example, the lists `[False,True]` and `[False,True,False]` both have type `[Bool]`, even though they have different lengths.
+  * Secondly, there are no restrictions on the type of the elements of a list, such as:
+```Haskell
+[['a','b'],['c','d','e']] :: [[Char]]
+```
+* Finally, there is no restriction that a list must have a finite length. In particular, due to the use of lazy evaluation in Haskell, lists with an infinite length are both natural and practical.
+
+
 
 
 
