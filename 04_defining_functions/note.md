@@ -17,7 +17,7 @@ recip n = 1/n
 
 ```
 
-### Conditional expressions
+### Conditional expressions
 Haskell provides a range of different ways to define functions that choose between a number of possible results.
 * The simplest are ***conditional expressions***, which use a logical expression called a ***condition*** to choose between two results of the same type. If the condition is `True`, then the first result is chosen, and if it is `False`, then the second result is chosen.
 * For example, the library function `abs` that returns the absolute value of an integer can be defined as follows:
