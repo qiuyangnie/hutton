@@ -50,3 +50,6 @@ or even be combined into a single line:
 a = b + c where {b = 1; c = 2}; d = a * 2
 ```
 In general, however, it is usually preferable to rely on the layout rule to determine the grouping of definitions, rather than using explicit syntax.
+
+### Tabs
+Tab characters can cause problems in scripts, because layout is significant but different text editors interpret tabs in different ways. For this reason, it is recommended to avoid using tabs when indenting definitions, and the GHC system issues a warning message if they are used. If you do wish to use tabs in your scripts, it is best to configure your editor to automatically convert them to spaces. Haskell assumes that tab stops are 8 characters wide.
