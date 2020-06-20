@@ -15,7 +15,7 @@ Following normal mathematical convention, in Haskell exponentiation is assumed t
 ## Standard prelude
 Haskell comes with a large number of built-in functions, which are defined in a library file called the *standard prelude*. In addition to familiar numeric functions such as `+` and `*`, the prelude also provides a range of useful functions that operate on lists. In Haskell, the elements of a list are enclosed in square parentheses and are separated by commas, as in `[1,2,3,4,5]`. 
 
-## Function application
+## Function application
 In mathematics, the application of a function to its arguments is usually denoted by enclosing the arguments in parentheses, wile the multiplication of two values is often denoted silently, by writing the two values next to one another.
 Reflecting its central status in the language, function application in Haskell is denoted silently using spacing, while the multiplication of two values is denoted explicitly using the operator `*`. For example: `f a b + c*d`.
 Moreover, function application has higher priority than all other operators in the language. For example, `f a + b` means `(f a) + b` rather than `f (a + b)`.
