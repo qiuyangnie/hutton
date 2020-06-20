@@ -25,3 +25,6 @@ New functions are defined in a *script*, a text file comprising a sequence of de
 
 ### My first script
 `test.hs`
+
+### Naming requirements
+By convention, list arguments in Haskell usually have the suffix `s` on their name to indicate that they may contain multiple values. For example, a list of numbers might be named as `ns`, a list of arbitrary values might be named as `xs`, and a list of lists of characters might be named as `css`.
