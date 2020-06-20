@@ -9,5 +9,6 @@ factorial n = product [1..n]
 average ns = sum ns `div` length ns
 
 {- 
+-- Average of a list of integers:
 average ns = div (sum ns) (length ns) 
 -}
