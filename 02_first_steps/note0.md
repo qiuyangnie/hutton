@@ -53,3 +53,21 @@ In general, however, it is usually preferable to rely on the layout rule to dete
 
 ### Tabs
 Tab characters can cause problems in scripts, because layout is significant but different text editors interpret tabs in different ways. For this reason, it is recommended to avoid using tabs when indenting definitions, and the GHC system issues a warning message if they are used. If you do wish to use tabs in your scripts, it is best to configure your editor to automatically convert them to spaces. Haskell assumes that tab stops are 8 characters wide.
+
+### Comments
+In addition to new definitions, scripts can also contain comments that will be ignored by the compiler. Haskell supports two kinds of comments, called *ordinary* and *nested*. Ordinary comments begin with the symbol `--` and extend to the end of the current line, as in the following examples:
+```Haskell
+-- Factorial of a positive integer:
+factorial n = product [1..n]
+
+-- Average of a list of integers:
+average ns = sum ns `div` length ns
+```
+Nested comments begin and end with the symbols `{-` and `-}`, may span multiple lines, and may be nested in the sense that comments can contain other comments. Nested comments are particularly useful for temporarily removing sections of definitions from a script, as in the following example:
+```Haskell
+{-
+double x = x + x
+
+quadruple x = double (double x)
+-}
+```
