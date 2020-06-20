@@ -19,3 +19,9 @@ Haskell comes with a large number of built-in functions, which are defined in a 
 In mathematics, the application of a function to its arguments is usually denoted by enclosing the arguments in parentheses, wile the multiplication of two values is often denoted silently, by writing the two values next to one another.
 Reflecting its central status in the language, function application in Haskell is denoted silently using spacing, while the multiplication of two values is denoted explicitly using the operator `*`. For example: `f a b + c*d`.
 Moreover, function application has higher priority than all other operators in the language. For example, `f a + b` means `(f a) + b` rather than `f (a + b)`.
+
+## Haskell scripts
+New functions are defined in a *script*, a text file comprising a sequence of definitions. By convention, Haskell scripts usually have a `.hs` suffix on their filename to differentiate them from other kinds of files. This is not mandatory, but is useful for identification purposes.
+
+### My first script
+`test.hs`
