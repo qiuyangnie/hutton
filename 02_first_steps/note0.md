@@ -28,3 +28,25 @@ New functions are defined in a *script*, a text file comprising a sequence of de
 
 ### Naming requirements
 By convention, list arguments in Haskell usually have the suffix `s` on their name to indicate that they may contain multiple values. For example, a list of numbers might be named as `ns`, a list of arbitrary values might be named as `xs`, and a list of lists of characters might be named as `css`.
+
+### The layout rule
+```Haskell
+a = b + c
+    where 
+       b = 1
+       c = 2
+d = a * 2
+```
+It is cleat from the indentation that `b` and `c` are local definitions for use within the body of `a`. If desired, such grouping can be made explicit by enclosing a sequence of definitions in curly parentheses and separating each definition by a semi-colon. For example, the above script could also be written as
+```Haskell
+a = b + c
+    where
+       {b = 1;
+        c = 2};
+d = a * 2
+```
+or even be combined into a single line:
+```Haskell
+a = b + c where {b = 1; c = 2}; d = a * 2
+```
+In general, however, it is usually preferable to rely on the layout rule to determine the grouping of definitions, rather than using explicit syntax.
