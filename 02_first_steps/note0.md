@@ -1,4 +1,4 @@
-# First Step
+# First steps
 
 ## Glasgow Haskell Compiler
 In practice, we usually require a system that can execute programs automatically. *Glasgow Haskell Compiler* is a state-of-the-art, open source implementation of Haskell. 
