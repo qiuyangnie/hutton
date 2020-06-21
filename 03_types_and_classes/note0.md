@@ -47,3 +47,6 @@ This type contains the two logical values `False` and `True`.
 
 ### `Char` - single charters
 This type contains all single characters in the Unicode system, the international standard for representing text-based information. For example, it contains all characters on a normal English keyboard, such as `'a'`, `'A'`, `'3'` and `'_'`, as well as a number of control characters that have a special effect, such as `'\n'` (move to a new line) and `'\t'` (move to the next tab stop). As in most programming languages, single characters must be enclosed in single forward quotes `' '`.
+
+### `String` - strings of characters
+This type contains all sequence of characters, such as `"abc"`, `"1+2=3"`, and the empty string `""`. Again, as in standard in most programming languages, strings of characters must be enclosed in double quotes `" "`.
