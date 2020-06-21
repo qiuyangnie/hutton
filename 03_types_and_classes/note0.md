@@ -38,3 +38,12 @@ Because type inference precedes evaluation, Haskell programs are *type safe*, in
 The downside of type safety is that some expressions that evaluate successfully will be rejected on type grounds. For example, the conditional expression `if True then 1 else False` evaluates to the number `1`, but contains a type error and is hence deemed invalid. In particular, the typing rule for a conditional expression requires that both possible results have the same type, whereas in this case the first such result, `1`, is a number and the second, `False`, is a logical value. In practice, however, programmers quickly learn how to work within the limits of the type system and avoid such problems.
 
 In GHCi, the type of any expression can be displayed by preceding the expression by the command `:type`. 
+
+## Basic types
+Haskell provides a number of basic types that are built-in to the language, of which the most commonly used are described below.
+
+### `Bool` - logical values
+This type contains the two logical values `False` and `True`.
+
+### `Char` - single charters
+This type contains all single characters in the Unicode system, the international standard for representing text-based information. For example, it contains all characters on a normal English keyboard, such as `'a'`, `'A'`, `'3'` and `'_'`, as well as a number of control characters that have a special effect, such as `'\n'` (move to a new line) and `'\t'` (move to the next tab stop). As in most programming languages, single characters must be enclosed in single forward quotes `' '`.
