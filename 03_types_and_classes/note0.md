@@ -58,3 +58,10 @@ This type contains integers such as `-100`, `0`, and `999`, with a fixed amount 
 This type contains all integers, with as much memory as necessary being used for their storage, thus avoiding the imposition of lower and upper limits on the range of numbers. For example, evaluating `2^63 :: Integer` using any Haskell system will produce the correct result.
 
 Apart from the different memory requirements and precision for numbers of type `Int` and `Integer`, the choice between these two types is also one of performance. In particular, most computers have built-in hardware for fixed-precision integers, whereas arbitrary-precision integers are usually processed using the slower medium of software, as sequences of digits.
+
+### `Float` - single-precision floating-point numbers
+This type contains numbers with a decimal point, such as `-12.34`, `1.0`, and `3.1415927`, with a fixed amount of memory being used for their storage.
+
+The term *floating-point* comes from the fact that the number of digits permitted after the decimal point depends upon the size of the number.
+
+
