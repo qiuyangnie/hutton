@@ -134,3 +134,44 @@ Prelude> head []
 *** Exception: Prelude.head: empty list
 
 ```
+
+## Curried functions
+Functions with multiple arguments can also be handled in another, perhaps less obvious way, by exploiting the fact that functions are free to return functions as results. For example, consider the following definition:
+```Haskell
+add' :: Int -> (Int -> Int)
+add' x y = x+y
+
+```
+The type states that `add'` is a function that takes an argument of type `Int`, and returns a result that is a function of type `Int -> Int`. The definition itself states that `add'` takes an integer `x` followed by an integer `y`, and returns the result `x+y`. More precisely, `add'` takes an integer `x` and returns a function, which in turn takes an integer `y` and returns the result `x+y`.
+
+Note that the function `add'` produces the same final result as the function `add` from the previous section, but whereas `add` takes its two arguments at the same time packaged as a pair, `add'` takes its two arguments one at a time, as reflected in the different types of the two functions:
+```Haskell
+add :: (Int,Int) -> Int
+
+add' :: Int -> (Int -> Int)
+
+```
+Functions with more than two arguments can also be handled using the same technique, by returning functions that return functions, and so on. For example, a function `mult` that takes three integers `x`, `y` and `z`, one at a time, and returns their product, can be defined as follow:
+```Haskell
+mult :: Int -> (Int -> (Int -> Int))
+mult x y z = x*y*z
+
+```
+This definition states that `mult` takes an integer `x` and returns a function, which in turn takes an integer `y` and returns another function, which finally takes an integer `z` and returns the result `x*y*z`.
+
+Functions such as `add'` and `mult` that take their arguments one at a time are called *curried functions*. As well as being interesting in their own right, curried functions are also more flexible than functions on tuples, because useful functions can often be made by partially applying a curried function with less than its full complement of arguments. For example, a function that increments an integers can be given by the partial application `add' 1 :: Int -> Int` of the curried function `add'` with only one of its two arguments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
