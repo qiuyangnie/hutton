@@ -159,19 +159,27 @@ mult x y z = x*y*z
 ```
 This definition states that `mult` takes an integer `x` and returns a function, which in turn takes an integer `y` and returns another function, which finally takes an integer `z` and returns the result `x*y*z`.
 
-Functions such as `add'` and `mult` that take their arguments one at a time are called *curried functions*. As well as being interesting in their own right, curried functions are also more flexible than functions on tuples, because useful functions can often be made by partially applying a curried function with less than its full complement of arguments. For example, a function that increments an integers can be given by the partial application `add' 1 :: Int -> Int` of the curried function `add'` with only one of its two arguments.
+Functions such as `add'` and `mult` that take their arguments one at a time are called *curried functions*. As well as being interesting in their own right, curried functions are also more flexible than functions on tuples, because useful functions can often be made by partially applying a curried function with less than its full complement of arguments. For example, a function that increments an integer can be given by the partial application `add' 1 :: Int -> Int` of the curried function `add'` with only one of its two arguments.
 
+To avoid excess parentheses when working with curried functions, two simple conventions are adopted. First of all, the function arrow `->` in types is assumed to associate to the right. For example, the type
+```Haskell
+Int -> Int -> Int -> Int
 
+``` 
+means
+```Haskell
+Int -> (Int -> (Int -> Int))
 
+```
+Consequently, function application, which is denoted silently using spacing, is assumed to associate to the left, For example, the application
+```Haskell
+mult x y z
 
+```
+means 
+```Haskell
+(((mult x) y) z)
 
+```
 
-
-
-
-
-
-
-
-
-
+Unless tupling is explicitly required, all functions in Haskell with multiple arguments are normally defined as curried functions, and the two conventions above are used to reduce the number of parentheses that are required.
