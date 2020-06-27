@@ -108,3 +108,29 @@ In a similar manner to list types, there are three further points to note about 
 
 ```
 Finally, note that tuples must have a finite arity, in order to ensure that tuple types can always be inferred prior to evaluation.
+
+## Function types
+A *function* is a mapping from arguments of one type to results of another type. We write `T1 -> T2` for the type of all functions that map arguments of type `T1` to results of type `T2`. For example, we have: 
+```Haskell
+not :: Bool -> Bool
+
+even :: Int -> Bool
+
+```
+(The library function `even` decides if an integer is even.) Because there are no restrictions on the types of the arguments and results of a function, the simple notion of a function with a single argument and a single result is already sufficient to handle the case of multiple arguments and results, by packaging multiple values using lists or tuples. For example, we can define a function `add`that calculates the sum of a pair of integers, and a function `zeroto` that returns the list of integers from zero to a given limit, as follow:
+```Haskell
+add :: (Int,Int) -> Int
+add (x,y) = x+y
+
+zeroto :: Int -> [Int]
+zeroto n = [0..n]
+
+```
+In these examples we have followed the Haskell convention of preceding function definitions by their types, which serves as useful documentation. Any such types provided manually by the user are checked for consistency with the types calculated automatically using type inference.
+
+Note that there is no restriction that functions must be *total* on their argument type, in the sense that there may be some arguments for which the result is not defined. For example, the result of the library function `head` that selects the first element of a list is undefined if the list is empty:
+```Shell
+Prelude> head []
+*** Exception: Prelude.head: empty list
+
+```
