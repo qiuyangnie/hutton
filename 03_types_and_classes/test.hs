@@ -6,7 +6,7 @@ ts = [(False,'0'),(True,'1')] :: [(Bool,Char)]
 
 ts' = ([False,True],['0','1']) :: ([Bool],[Char])
 
-xs = [tail,init,reverse] :: [[Int] -> [Int]]
+xs = [tail,init,reverse] :: [[a] -> [a]]
 
 second :: [a] -> a
 second xs = head (tail xs)
