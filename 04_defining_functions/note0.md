@@ -1,6 +1,6 @@
 # Defining functions
 
-##Â New from old
+##  New from old
 Perhaps the most straightforward way to define new functions is simply by combining one or more existing functions. For example, a few library functions that can be defined in this way are shown below.
 
 ```Haskell
@@ -34,7 +34,7 @@ signum n = if n < 0 then -1 else
 ```
 Note that unlike in some programming languages, conditional expressions in Haskell must always have an `else` branch, which avoids the well-known *dangling else* problem. For example, if `else` branches were optional, then the expression `if True then if False then 1 else 2` could either return the result `2` or produce an error, depending upon whether the single `else` branch was assumed to be part of the inner or outer conditional expression.
 
-##Â Guarded equations
+##  Guarded equations
 As an alternative to using conditional expressions, functions can also be defined using *guarded equations*, in which a sequence of logical expressions called *guards* is used to choose between a sequence of results of the same type. If the first guard is `True`, then the first result is chosen; otherwise, if the second is `True`, then the second result is chosen, and so on. For example, the library function `abs` can also be defined using guarded equations as follows:
 ```Haskell
 abs :: Int -> Int
@@ -52,4 +52,51 @@ signum n | n < 0     = -1
          | otherwise = 1
 
  ``` 
- 
+
+## Pattern matching
+Many functions have a simple and intuitive definition using *pattern matching*, in which a sequence of syntactic expressions called *patterns* is used to choose between a sequence of results of the same type. If the first pattern is *matched*, then the first result is chosen; otherwise, if the second is matched, then the second result is chosen, and so on. For example, the library function `not` that returns the negation of a logical value can be defined as follows:
+```Haskell
+not :: Bool -> Bool
+not False = True
+not True  = False
+
+```
+Functions with more than one argument can also be defined using pattern matching, in which case the patterns for each argument are matched in order within each equation. For example, the library operator `&&` that returns the conjunction of two logical values can be defined as follows:
+```Haskell
+(&&) :: Bool -> Bool -> Bool
+(&&) True True   = True
+(&&) True False  = False
+(&&) False True  = False
+(&&) False False = False
+
+```
+However, this definition can be simplified by combining the last three equations into a single equation that returns `False` independent of the values of the two arguments, using the *wildcard pattern* `_` that matches any value:
+```Haskell
+(&&) :: Bool -> Bool -> Bool
+True && True = True
+_    && _    = False
+``` 
+This version also has the benefit that, under lazy evaluation, if the first argument is `False`, then the result `False` is returned without the need to evaluate the second argument. In practice, the prelude defines `&&` using equations that have this same property, but make the choice about which equation applies using the value of the first argument only:
+```Haskell
+(&&) :: Bool -> Bool -> Bool
+True  && b = b
+False && _ = False
+
+```
+That is, if the first argument is `True`, then the result is the value of the second argument, and, if the first argument is `False`, then the result is `False`.
+
+Note that Haskell does not permit the same name to be used for more than one argument in a single equation. For example, the following definition for the operator `&&` is based upon the observation that, if the two logical arguments are equal, then the result is the same value, otherwise the result if `False`, but is invalid because of the above naming requirement:
+```Haskell
+(&&) :: Bool -> Bool -> Bool
+b && b = b
+_ && _ = False
+
+```
+If desired, however, a valid version of this definition can be obtained by using a guard to decide if the two arguments are equal:
+```Haskell
+(&&) :: Bool -> Bool -> Bool
+b && c | b == c    = b
+       | otherwise = False
+
+```
+So far, we have only considered basic patterns that are either values, variables, or the wildcard pattern. In the remainder of this section we introduce two useful ways to build larger patterns by combining smaller patterns.
