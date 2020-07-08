@@ -100,3 +100,14 @@ b && c | b == c    = b
 
 ```
 So far, we have only considered basic patterns that are either values, variables, or the wildcard pattern. In the remainder of this section we introduce two useful ways to build larger patterns by combining smaller patterns.
+
+### Tuple patterns
+A tuple of patterns is itself a pattern, which matches any tuple of the same arity whose components all match the corresponding patterns in order. For example, the library  functions `fst` and `snd` that respectively select the first and second components of a pair are defined as follows:
+```Haskell
+fst :: (a,b) -> a
+fst (x,_) = x
+
+snd :: (a,b) -> b
+snd (_,y) = y
+
+```
