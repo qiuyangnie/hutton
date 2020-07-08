@@ -111,3 +111,11 @@ snd :: (a,b) -> b
 snd (_,y) = y
 
 ```
+
+### List patterns
+Similarly, a list of patterns is itself a pattern, which matches any list of the same length whose elements all match the corresponding patterns in order. For example, a function `test` that decides if a list contains precisely three characters beginning with the letter `'a'` can be defined as follows:
+```Haskell
+test :: [Char] -> Bool
+test ['a',_,_] = True
+test _         = False
+```
