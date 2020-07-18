@@ -18,4 +18,7 @@ last' xs = xs !! (length xs - 1)
 init xs = reverse (drop 1 (reverse xs))
 
 init' xs = take (length xs - 1) xs
+
+double' :: Num a => a -> a
+double' x = (+) x x
  
