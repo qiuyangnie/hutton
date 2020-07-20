@@ -28,3 +28,9 @@ fst (x,_) = x
 
 snd :: (a,b) -> b
 snd (_,y) = y
+
+add :: Int -> (Int -> Int)
+add = \x -> (\y -> x + y)
+
+add' :: Int -> Int -> Int
+add' x y = x + y
