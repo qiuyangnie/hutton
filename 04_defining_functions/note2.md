@@ -25,3 +25,16 @@ add = \x -> (\y -> x + y)
 
 ``` 
 which makes precise that `add` is a function that takes an integer `x` and returns a function, which in turn takes another integer `y` and returns the result `x + y`. Moreover, rewriting the original definition in this manner also has the benefit that the type for the function and the manner in which it is defined now have the same syntactic form, namely `? -> (? -> ?)`.
+
+Secondly, lambda expressions are also useful when defining functions that return functions as results by their very nature, rather than as a consequence of currying. For example, the library function `const` that returns a constant function that always produces a given value can be defined as follows:
+```Haskell
+const :: a -> b -> a
+const x _ = x
+
+```
+However, it is more appealing to define `const` in a way that makes explicit that it returns a function as its result, by including parentheses in the type and using a lambda expression in the definition itself:
+```Haskell
+const :: a -> (b -> a)
+const = \x -> (\_ -> x)
+
+```
