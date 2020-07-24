@@ -38,3 +38,16 @@ const :: a -> (b -> a)
 const = \x -> (\_ -> x)
 
 ```
+Finally, lambda expressions can be used to avoid having to name a function that is only referenced once in a program. For example, a function `odds` that returns the first `n` odd integers can be defined as follows:
+```Haskell
+odds :: Int -> [Int]
+odds n = map f [0..n-1]
+         where f x = x*2 + 1
+
+```
+(The library function `map` applies a function to all elements of a list.) However, because the locally defined function `f` is only referenced once, the definition for `odds` can be simplified by using a lambda expression: 
+```Haskell
+odds :: Int -> [Int]
+odds n = map (\x -> x*2 + 1) [0..n-1]
+
+```
