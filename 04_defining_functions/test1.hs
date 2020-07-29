@@ -76,3 +76,21 @@ odds n = map f [0..n-1]
 -- can be simplified to
 odds' :: Int -> [Int]
 odds' n = map (\x -> x*2 + 1) [0..n-1]
+
+-- Operator Sections
+-- An operator written between its two arguments can be converted into a curried function written before its two arguments by using parentheses. For example:
+-- This convention also allows one of arguments of the operator to be included in the parentheses.
+-- In general, if + is an operator then functions of the form (+), (x+) and (+y) are called sections.
+-- Why are sections useful?
+-- Useful functions can sometimes be constructed in a simple way using sections. For example:
+succ :: Int -> Int
+succ = (1+)
+
+recip :: Double -> Double
+recip = (1/)
+
+double :: Int -> Int
+double = (*2)
+
+halving :: Double -> Double
+halving = (/2)
