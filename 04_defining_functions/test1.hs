@@ -94,3 +94,7 @@ double = (*2)
 
 halving :: Double -> Double
 halving = (/2)
+
+safetail :: [a] -> [a]
+safetail (_:xs) = xs
+safetail []     = []
