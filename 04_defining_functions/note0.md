@@ -119,3 +119,8 @@ test :: [Char] -> Bool
 test ['a',_,_] = True
 test _         = False
 ```
+Up to this point, we have viewed lists as a primitive notion in Haskell. In fact they are not primitive as such, but are constructed one element at a time starting from the empty list `[]` using an operator `:` called *cons* that *cons*tructs a new list by prepending a new element to the start of an existing list. For example, the list `[1,2,3]` can be decomposed as follows:
+```Haskell
+[1,2,3]
+
+```
