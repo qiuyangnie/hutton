@@ -72,3 +72,42 @@ True
 
 ```
 Note that function types are not in general instances of the `Eq` class, because it is not feasible in general to compare two functions for equality.
+
+## `Ord` - ordered types
+This class contains types that are instances of the equality class `Eq`, but in addition whose values are totally (linearly) ordered, and as such can be compared and processed using the following six methods:
+```Haskell
+(<) :: a -> a -> Bool
+
+(<=) :: a -> a -> Bool
+
+(>) :: a -> a -> Bool
+
+(>=) :: a -> a -> Bool
+
+min :: a -> a -> a
+
+max :: a -> a -> a
+
+```
+All the basic types `Bool`, `Char`, `String`, `Int`, `Integer`, `Float`, and `Double` are instances of the `Ord` class, as are list types and tuple types, provided that their element and component types are instances. For example:
+```Haskell
+> False < True
+True
+
+> min 'a' 'b'
+'a'
+
+> "elegant" < "elephant"
+True
+
+> [1,2,3] < [1,2]
+False
+
+> ('a',2) < ('b',1)
+True
+
+> ('a',2) < ('a',1)
+False
+
+```
+Note that strings, lists and tuples are ordered *lexicographically*; that is, in the same way as words in a dictionary. For example, two pairs of the same type are in order if their first components are in order, in which case their second components are not considered, or if their first components are equal, in which case their second components must be in order.
