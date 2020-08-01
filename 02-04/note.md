@@ -39,6 +39,26 @@ Haskell has a number of type classes, including:
 
 ```
 
+## Function Types
+A function is a mapping from values of one type to values of another type:
+```Haskell
+not :: Bool -> Bool
+
+even :: Integral a => a -> Bool
+
+```
+In general, `t1 -> t2` is the type of functions that map values of type `t1` to values of type `t2`.
+
+The argument and result types are unrestricted. For example, functions with multiple arguments or results are possible using lists or tuples:
+```Haskell
+add :: (Int,Int) -> Int
+add = \(x,y) -> x+y
+
+zeroto :: Int -> [Int]
+zeroto = \n -> [0..n]
+
+```
+
 ## Conditional Expressions
 As in most programming languages, functions can be defined using conditional expressions.
 

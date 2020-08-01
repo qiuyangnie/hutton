@@ -17,5 +17,11 @@ double = \x -> x*2
 palindrome :: String -> Bool
 palindrome = \xs -> reverse xs == xs
 
+add :: Num a => (a,a) -> a
+add = \(x,y) -> x+y
+
+zeroto :: Int -> [Int]
+zeroto = \n -> [0..n]
+
 -- twice :: (a -> b) -> a -> b
 -- twice = \f -> \x -> f (f x)
