@@ -23,5 +23,5 @@ add = \(x,y) -> x+y
 zeroto :: Int -> [Int]
 zeroto = \n -> [0..n]
 
--- twice :: (a -> b) -> a -> b
--- twice = \f -> \x -> f (f x)
+twice :: (t -> t) -> t -> t
+twice = \f -> \x -> f (f x)
