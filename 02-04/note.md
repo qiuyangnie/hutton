@@ -88,7 +88,7 @@ That is, `[1,2,3]` is just an abbreviation for `1:(2:(3:[]))`. To avoid excess p
 
 As well as being used to construct lists, the cons operator can also be used to construct patterns, which match any non-empty list whose first and remaining elements match the corresponding patterns in order. For example, we can now define a more general version of the function `test` that decides if a list containing any number of characters begins with the letter `'a'`:
 ```Haskell
-test' :: [Char] -> Bool 
+test' :: [Char] -> Bool
 test' ('a':_) = True
 test' _       = False
 

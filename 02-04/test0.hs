@@ -45,7 +45,7 @@ test :: [Char] -> Bool
 test ['a',_,_] = True
 test _         = False
 
-test' :: [Char] -> Bool 
+test' :: [Char] -> Bool
 test' ('a':_) = True
 test' _       = False
 
