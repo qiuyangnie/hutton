@@ -72,3 +72,16 @@ safetail''' = \xs -> if null xs then [] else tail xs
 safetail'''' :: [a] -> [a]
 safetail'''' xs | null xs   = []
                 | otherwise = tail xs
+
+halve :: [a] -> ([a],[a])
+halve xs = if even (Main.length xs) then (take n xs,drop n xs)
+           else ([],[])
+           where n = Main.length xs `div` 2
+
+halve' :: [a] -> ([a],[a])
+halve' xs = if even (Main.length xs) then splitAt (Main.length xs `div` 2) xs
+            else ([],[])
+
+halve'' :: [a] -> ([a],[a])
+halve'' xs | even (Main.length xs) = (take (Main.length xs `div` 2) xs,drop (Main.length xs `div` 2) xs)
+           | otherwise             = ([],[])
