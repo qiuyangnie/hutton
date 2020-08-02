@@ -62,6 +62,9 @@ zeroto = \n -> [0..n]
 ## Conditional Expressions
 As in most programming languages, functions can be defined using conditional expressions.
 
+## Guarded Equations
+As an alternative to conditionals, functions can also be defined using guarded equations.
+
 ## Basic classes
 Recall that a type is a collection of related values. Building upon this notion, a *class* is a collection of types that support certain overloaded operations called *methods*.
 
