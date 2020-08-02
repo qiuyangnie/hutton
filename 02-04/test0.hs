@@ -49,8 +49,8 @@ safetail' xs | xs == []  = []
              | otherwise = tail xs
 
 safetail'' :: [a] -> [a]
-safetail'' [] = []
-safetail'' xs = tail xs
+safetail'' []     = []
+safetail'' (_:xs) = xs
 
 safetail''' :: [a] -> [a]
 safetail''' = \xs -> if null xs then [] else tail xs
