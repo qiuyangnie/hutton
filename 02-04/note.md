@@ -65,6 +65,45 @@ As in most programming languages, functions can be defined using conditional exp
 ## Guarded Equations
 As an alternative to conditionals, functions can also be defined using guarded equations.
 
+## List patterns
+A list of patterns is itself a pattern, which matches any list of the same length whose elements all match the corresponding patterns in order. For example, a function `test` that decides if a list contains precisely three characters beginning with the letter `'a'` can be defined as follows:
+```Haskell
+test :: [Char] -> Bool
+test ['a',_,_] = True
+test _         = False
+
+```
+Up to this point, we have viewed lists as a primitive notion in Haskell. In fact, they are not primitive as such, but are constructed one element at a time starting from the empty list `[]` using an operator `:` called *cons* that *cons*tructs a new list by prepending a new element to the start of an existing list. For example, the list `[1,2,3]` can be decomposed as follows:
+```
+[1,2,3]
+
+1 : [2,3]
+
+1 : (2 : [3])
+
+1 : (2 : (3 : []))
+
+```
+That is, `[1,2,3]` is just an abbreviation for `1:(2:(3:[]))`. To avoid excess parentheses when working with such lists, the cons operator is assumed to associate to the right. For example, `1:2:3:[]` means `1:(2:(3:[]))`.
+
+As well as being used to construct lists, the cons operator can also be used to construct patterns, which match any non-empty list whose first and remaining elements match the corresponding patterns in order. For example, we can now define a more general version of the function `test` that decides if a list containing any number of characters begins with the letter `'a'`:
+```Haskell
+test' :: [Char] -> Bool 
+test' ('a':_) = True
+test' _       = False
+
+```
+Similarly, the library function `head` and `tail` that respectively select and remove the first element of a non-empty list are defined as follows:
+```Haskell
+head' :: [a] -> a
+head' (x:_) = x
+
+tail' :: [a] -> [a]
+tail' (_:xs) = xs
+
+```
+Note that cons patterns must be parenthesised, because function application has higher priority than all other operators in the language. For example, the definition `head x:_ = x` without parentheses means `(head x):_ = x`, which is both the incorrect meaning and an invalid definition.
+
 ## Basic classes
 Recall that a type is a collection of related values. Building upon this notion, a *class* is a collection of types that support certain overloaded operations called *methods*.
 

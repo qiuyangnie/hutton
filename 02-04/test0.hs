@@ -39,7 +39,21 @@ abs' n | n >= 0    = n
 -- Many functions have a particularly clear definition using pattern matching on their arguments.
 abs'' :: Num a => a -> a
 abs'' n  = n
-abs'' -n = n 
+abs'' -n = n
+
+test :: [Char] -> Bool
+test ['a',_,_] = True
+test _         = False
+
+test' :: [Char] -> Bool 
+test' ('a':_) = True
+test' _       = False
+
+head' :: [a] -> a
+head' (x:_) = x
+
+tail' :: [a] -> [a]
+tail' (_:xs) = xs
 
 safetail :: Eq a => [a] -> [a]
 safetail = \xs -> if xs == [] then [] else tail xs
