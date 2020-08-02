@@ -25,3 +25,36 @@ zeroto = \n -> [0..n]
 
 twice :: (t -> t) -> t -> t
 twice = \f -> \x -> f (f x)
+
+-- Conditional expressions
+abs :: (Ord p, Num p) => p -> p
+abs = \n -> if n >= 0 then n else -n
+
+-- Guarded equations can be used to make definitions involving multiple conditions easier to read:
+abs' :: (Ord p, Num p) => p -> p
+abs' n | n >= 0    = n
+       | otherwise = -n
+
+-- Pattern matching
+-- Many functions have a particularly clear definition using pattern matching on their arguments.
+abs'' :: Num a => a -> a
+abs'' n  = n
+abs'' -n = n 
+
+safetail :: Eq a => [a] -> [a]
+safetail = \xs -> if xs == [] then [] else tail xs
+
+safetail' :: Eq a => [a] -> [a]
+safetail' xs | xs == []  = []
+             | otherwise = tail xs
+
+safetail'' :: [a] -> [a]
+safetail'' [] = []
+safetail'' xs = tail xs
+
+safetail''' :: [a] -> [a]
+safetail''' = \xs -> if null xs then [] else tail xs
+
+safetail'''' :: [a] -> [a]
+safetail'''' xs | null xs   = []
+                | otherwise = tail xs
