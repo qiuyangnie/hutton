@@ -97,3 +97,21 @@ third'' (_:(_:xs)) = head xs
 
 third''' :: [a] -> a
 third''' (_:_:x:_) = x
+
+-- (&&) :: Bool -> Bool -> Bool
+-- (&&) True True   = True
+-- (&&) True False  = False
+-- (&&) False True  = False
+-- (&&) False False = False
+
+-- (&&) :: Bool -> Bool -> Bool
+-- (&&) True True   = True
+-- (&&) _ _  = False
+
+(&&) :: Bool -> Bool -> Bool
+(&&) True b  = b
+(&&) False _ = False
+
+(||) :: Bool -> Bool -> Bool
+(||) True _  = True
+(||) False b = b
