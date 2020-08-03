@@ -1,6 +1,6 @@
 -- Type variables must begin with a lower-case letter, and are usually named a, b, c, etc.
-length :: [a] -> Int
-length = \xs -> Prelude.length xs
+-- length :: [a] -> Int
+-- length = \xs -> Prelude.length xs
 
 second :: [a] -> a
 second = \xs -> head (tail xs)
@@ -74,14 +74,26 @@ safetail'''' xs | null xs   = []
                 | otherwise = tail xs
 
 halve :: [a] -> ([a],[a])
-halve xs = if even (Main.length xs) then (take n xs,drop n xs)
+halve xs = if even (length xs) then (take n xs,drop n xs)
            else ([],[])
-           where n = Main.length xs `div` 2
+           where n = length xs `div` 2
 
 halve' :: [a] -> ([a],[a])
-halve' xs = if even (Main.length xs) then splitAt (Main.length xs `div` 2) xs
+halve' xs = if even (length xs) then splitAt (length xs `div` 2) xs
             else ([],[])
 
 halve'' :: [a] -> ([a],[a])
-halve'' xs | even (Main.length xs) = (take (Main.length xs `div` 2) xs,drop (Main.length xs `div` 2) xs)
-           | otherwise             = ([],[])
+halve'' xs | even (length xs) = (take (length xs `div` 2) xs,drop (length xs `div` 2) xs)
+           | otherwise        = ([],[])
+
+third' :: [a] -> a
+third' = \xs -> head (tail (tail xs))
+
+third :: [a] -> a
+third = \xs -> xs !! 2
+
+third'' :: [a] -> a
+third'' (_:(_:xs)) = head xs
+
+third''' :: [a] -> a
+third''' (_:_:x:_) = x
