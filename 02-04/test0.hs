@@ -106,7 +106,7 @@ third''' (_:_:x:_) = x
 
 -- (&&) :: Bool -> Bool -> Bool
 -- (&&) True True   = True
--- (&&) _ _  = False
+-- (&&) _ _         = False
 
 (&&) :: Bool -> Bool -> Bool
 (&&) True b  = b
