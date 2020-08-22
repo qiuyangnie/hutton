@@ -44,3 +44,33 @@ length' xs = sum [1 | _ <- xs]
 
 ```
 In this case, the generator `_ <- xs` simply serves as a counter to govern the production of the appropriate number of ones.
+
+# Guards
+List comprehensions can also use logical expressions called *guards* to filter the values produced by earlier generators. If a guard is `True`, then the current values are retained; if it is `False`, then they are discarded. For example, the comprehension `[x | x <- [1..10], even x]` produces the list `[2,4,6,8,10]` of all even numbers from the list `[1..10]`. Similarly, a function that maps a positive integer to its list of positive factors can be defined by:
+```Haskell
+factors :: Int -> [Int]
+factors = \n -> [x | x <- [1..n], mod n x == 0]
+
+```
+Recall that an integer greater than one is *prime* if its only positive factors are one and the number itself. Hence, by using `factors`, a simple function that decides if an integer is prime can be defined as follows:
+```Haskell
+prime :: Int -> Bool
+prime = \n -> factors n == [1,n]
+
+```
+Note that deciding that a number such as `15` is not prime does not require the function `prime` to produce all of its factors, because under lazy evaluation the result `False` is returned as soon as any factor other than one or the number itself is produced, which for this example is given by the factor `3`.
+
+Returning to list comprehensions, using `prime` we can now define a function that produces the list of all prime numbers up to a given limit:
+```Haskell
+primes :: Int -> [Int]
+primes = \n -> [x| x <- [2..n], prime x]
+
+```
+In chapter 15 we will present a more efficient program to generate prime numbers using the famous *sieve of Eratosthenes*, which has a particularly clear and concise implementation in Haskell using the idea of lazy evaluation.
+
+As a final example concerning guards, suppose that we represent a lookup table by a list of pairs of keys and values. Then for any type of keys that supports equality, a function `find` that returns the list of all values that are associated with a given key in a table can be defined as follows:
+```Haskell
+find :: Eq a => a -> [(a,b)] -> [b]
+find = \k -> \t -> [v | (k',v) <- t, k == k']
+
+```
