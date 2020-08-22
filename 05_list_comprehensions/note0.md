@@ -25,4 +25,22 @@ Later generators can also depend upon the values of variables from earlier gener
 [(1,1),(1,2),(1,3),(2,2),(2,3),(3,3)]
 
 ```
+As a more practical example of this idea, the library function `concat` that concatenates a list of lists can be defined by using one generator to select each list in turn, and another to select each element from each list:
+```Haskell
+concat' :: [[a]] -> [a]
+concat' xss = [x | xs <- xss, x <- xs]
 
+```
+The wildcard pattern `_` is sometimes useful in generators to discard certain elements from a list. For example, a function that selects all the first components from a list of pairs can be defined as follows:
+```Haskell
+firsts :: [(a,b)] -> [a]
+firsts ps = [x | (x,_) <- ps]
+
+```
+Similarly, the library function that calculates the length of a list can be defined by replacing each element by one and summing the resulting list:
+```Haskell
+length' :: [a] -> Int
+length' xs = sum [1 | _ <- xs]
+
+```
+In this case, the generator `_ <- xs` simply serves as a counter to govern the production of the appropriate number of ones.
