@@ -74,3 +74,17 @@ find :: Eq a => a -> [(a,b)] -> [b]
 find = \k -> \t -> [v | (k',v) <- t, k == k']
 
 ```
+
+# The `zip` function
+The library function `zip` produces a new list by pairing successive elements from two existing lists until either or both lists are exhausted. For example:
+```Shell
+> zip ['a','b','c'] [1,2,3,4]
+[('a',1),('b',2),('c',3)]
+
+```
+The function `zip` is often useful when programming with list comprehensions. For example, suppose that we define a function that returns the list of all pairs of adjacent elements from a list as follows:
+```Haskell
+pairs :: [a] -> [(a,a)]
+pairs = \xs -> zip xs (tail xs)
+
+```
