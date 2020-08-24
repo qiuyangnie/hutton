@@ -88,3 +88,24 @@ pairs :: [a] -> [(a,a)]
 pairs = \xs -> zip xs (tail xs)
 
 ```
+Then using `pairs` we can now define a function that decides if a list of elements of any ordered type is sorted by simply checking that all pairs of adjacent elements from the list are in the correct order:
+```Haskell
+sorted :: Ord a => [a] -> Bool
+sorted = \xs -> sum [1 | (x,y) <- pairs xs, x < y] == (length xs) - 1
+
+sorted' :: Ord a => [a] -> Bool
+sorted' = \xs -> and [x <= y | (x,y) <- pairs xs]
+
+```
+Similarly to the function `prime`, deciding that a list such as `[1,3,2,4]` is not sorted may not require the function `sorted` to produce all pairs of adjacent elements, because the result `False` is returned as soon as any non-ordered pair is produced, which in this example is given by the pair `(3,2)`.
+
+Using `zip` we can also define a function that returns the list of all positions at which a value occurs in a list, by pairing each element with its position, and selecting those positions at which the desired value occurs:
+```Haskell
+positions' :: Eq => a -> [a] -> [Int]
+positions' x xs = [i | (e,i) <- zip xs [0..(length xs - 1)], e == x]
+
+positions :: Eq => a -> [a] -> [Int]
+positions = \x -> \xs -> [i | (x',i) <- zip xs [0..], x == x']
+
+```
+Within the definition for `positions`, the expression `[0..]` produces the list of indices `[0,1,2,3,...]`. This list is notionally *infinitive*, but under lazy evaluation only as many elements of the list as required by the context in which it is used, in this case zipping with the input list `xs`, will actually by produced. Exploiting lazy evaluation in this manner avoids the need to explicitly produce a list of indices of the same length as the input list. 
