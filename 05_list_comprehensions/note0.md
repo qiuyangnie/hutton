@@ -108,4 +108,35 @@ positions :: Eq => a -> [a] -> [Int]
 positions = \x -> \xs -> [i | (x',i) <- zip xs [0..], x == x']
 
 ```
-Within the definition for `positions`, the expression `[0..]` produces the list of indices `[0,1,2,3,...]`. This list is notionally *infinitive*, but under lazy evaluation only as many elements of the list as required by the context in which it is used, in this case zipping with the input list `xs`, will actually by produced. Exploiting lazy evaluation in this manner avoids the need to explicitly produce a list of indices of the same length as the input list. 
+Within the definition for `positions`, the expression `[0..]` produces the list of indices `[0,1,2,3,...]`. This list is notionally *infinitive*, but under lazy evaluation only as many elements of the list as required by the context in which it is used, in this case zipping with the input list `xs`, will actually by produced. Exploiting lazy evaluation in this manner avoids the need to explicitly produce a list of indices of the same length as the input list.
+
+# String comprehensions
+Up to this point we have viewed strings as a primitive notion in Haskell. In fact, they are not primitive, but are constructed as lists of characters. For example, the strings `"abc" :: String` is just an abbreviation for the list of characters `['a','b','c'] :: [Char]`. Because strings are lists, any polymorphic function on lists can also be used with strings. For example:
+```Shell
+> "abcde" !! 2
+'c'
+> take 3 "abcde"
+"abc"
+> length "abcde"
+5
+> zip "abc" [1,2,3,4]
+[('a',1),('b',2),('c',3)]
+
+```
+For the same reason, list comprehensions can also be used to define functions on strings, such as functions that return the number of lower-case letters and particular characters that occur in a string, respectively:
+```Haskell
+lowers :: [Char] -> Int
+lowers = \xs -> length [x | x <- xs, x >= 'a' && x <= 'z']
+
+count :: Char -> [Char] -> Int
+count = \x -> \xs -> length [x' | x' <- xs, x == x']
+
+```
+For example: 
+```ghci
+> lowers "Haskell"
+6
+> count 's' "Mississippi"
+4
+
+```
