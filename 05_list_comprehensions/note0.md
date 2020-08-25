@@ -140,3 +140,26 @@ For example:
 4
 
 ```
+
+# The Caesar cipher
+We conclude this chapter with an extended programming example. Consider the problem of encoding a string in order to disguise its contents. A well-known encoding method is the **Caesar cipher**, named after its use by Julius Caesar more than 2,000 years ago. To encode a string, Caesar simply replaced each letter in the string by the letter three places further down in the alphabet, wrapping around at the end of the alphabet. For example, the string
+```Haskell
+"haskell is fun"
+```
+would be encoded as
+```Haskell
+"kdvnhoo lv ixq"
+```
+More generally, the specific shift factor of three used by Caesar can be replaced by any integer between one and twenty-five, thereby giving twenty-five different ways of encoding a string. For example, with a shift factor of ten, the original string above would be encoded as follows:
+```Haskell
+"rkcuovv sc pex"
+```
+In the remainder of this section we show how Haskell can be used to implement the Caesar cipher, and how the cipher itself can easily be cracked by exploiting information about letter frequencies in English text.
+
+## Encoding and decoding
+We will use a number of standard functions on characters that are provided in a library called `Data.Char`, which can be loaded into a Haskell script by including the following declaration at the start of the script:
+```Haskell
+import Data.Char
+
+```
+For simplicity, we will only encode the lower-case letters within a string, leaving other characters such as upper-case letters and punctuation unchanged. We begin by defining a function `let2int` that converts a lower-case letter between `'a'` and `'z'`
