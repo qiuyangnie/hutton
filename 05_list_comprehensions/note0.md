@@ -162,4 +162,67 @@ We will use a number of standard functions on characters that are provided in a 
 import Data.Char
 
 ```
-For simplicity, we will only encode the lower-case letters within a string, leaving other characters such as upper-case letters and punctuation unchanged. We begin by defining a function `let2int` that converts a lower-case letter between `'a'` and `'z'`
+For simplicity, we will only encode the lower-case letters within a string, leaving other characters such as upper-case letters and punctuation unchanged. We begin by defining a function `let2int` that converts a lower-case letter between `'a'` and `'z'` into the corresponding integer between `0` and `25`, together with a function `int2let` that performs the opposite conversion:
+```Haskell
+import Data.Char
+
+-- bad definition
+let2int :: [Char] -> [Int]
+let2int cs = [(ord c) - 97 | c <- cs]
+
+let2int' :: Char -> Int
+let2int' = \c -> ord c - ord 'a'
+
+int2let :: Int -> Char
+int2let = \n -> if n < 0 || n > 25 then '0'
+            else chr (n + 97)
+
+int2let' :: Int -> Char
+int2let' = \n -> chr (n + ord 'a')
+
+```
+(The library function `ord :: Char -> Int` and `chr :: Int -> Char` convert between characters and their Unicode numbers.) For example:
+```ghci
+> ord 'a'
+97
+> chr 0
+'\NUL'
+> let2int 'a'
+0
+> int2let 0
+'a'
+
+```
+Using these two functions, we can define a function `shift` that applies a shift factor to a lower-case letter by converting the letter into the corresponding integer, adding on the shift factor and taking the remainder when divide by twenty-six (thereby wrapping around at the end of the alphabet), and converting the resulting integer back into a lower-case letter:
+```Haskell
+shift' :: Int -> Char -> Char
+shift' n c | isLower c = int2let (mod (let2int c + n) 26)
+           | otherwise = c
+
+```
+(The library function `isLower :: Char -> Bool` decides if a character is a lower-case letter.) Note that this function accepts both positive and negative factors, and that only lower-case letters are changed. For example:
+```ghci
+> shift' 3 'a'
+'d'
+> shift' 3 'z'
+'c'
+> shift' (-3) 'c'
+'z'
+> shift' 3 ' '
+' '
+
+```
+Using `shift` within a list comprehension, it is now easy to define a function that encodes a string using a given shift factor:
+```Haskell
+encode :: Int -> [Char] -> [Char]
+encode = \n -> \xs -> [shift' n x | x <- xs]
+
+```
+A separate function to decode a string is not required, because this can be achieved by simply using a negative shift factor. For example:
+```ghci
+> encode 3 "haskell is fun"
+"kdvnhoo lv ixq"
+> encode (-3) "kdvnhoo lv ixq"
+"haskell is fun"
+
+```
