@@ -15,3 +15,7 @@ length (_:xs) = 1 + Main.length xs
 reverse :: [a] -> [a]
 reverse []     = []
 reverse (x:xs) = Main.reverse xs ++ [x]
+
+(++) :: [a] -> [a] -> [a]
+(++) [] [] = []
+ 
