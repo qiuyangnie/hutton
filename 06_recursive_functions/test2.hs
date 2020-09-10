@@ -7,3 +7,7 @@ drop' :: Int -> [a] -> [a]
 drop' _ []     = []
 drop' 0 xs     = xs
 drop' n (_:xs) = drop' (n-1) xs
+
+append :: [a] -> [a] -> [a]
+append [] ys         = ys
+append (x:xs) ys     = x : (append xs ys)
