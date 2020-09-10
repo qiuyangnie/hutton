@@ -11,3 +11,11 @@ drop' n (_:xs) = drop' (n-1) xs
 append :: [a] -> [a] -> [a]
 append [] ys         = ys
 append (x:xs) ys     = x : (append xs ys)
+
+qsort :: Ord a => [a] -> [a]
+qsort []     = []
+qsort (x:xs) = 
+   qsort smaller ++ [x] ++ qsort larger
+   where 
+      smaller = [a | a <- xs, a <= x]
+      larger  = [b | b <- xs, b > x]
