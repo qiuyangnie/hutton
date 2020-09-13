@@ -13,3 +13,6 @@ fac'' n = n * fac''(n-1)
 product' :: Num a => [a] -> a
 product' []     = 1
 product' (n:ns) = n * product' ns
+
+product'' :: Num a => [a] -> a
+product'' = foldr (*) 1
