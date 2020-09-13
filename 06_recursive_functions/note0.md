@@ -53,7 +53,7 @@ In turn, the append operator `++` used in the above definition of `reverse` can 
 ```Haskell
 (++) :: [a] -> [a] -> [a]
 []     ++ ys = ys
-(x:xs) ++ ys = x : xs ++ ys
+(x:xs) ++ ys = x : xs ++ ys       -- function application has higher priority than all other operators in the language
 ```
 * That is, the recursive definition `++` formalises the idea that two lists can be appended by copying elements from the first list until it is exhausted, at which point the second list is joined on at the end.
 
