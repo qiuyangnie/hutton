@@ -48,3 +48,12 @@ reverse' :: [a] -> [a]
 reverse' []     = []
 reverse' (x:xs) = reverse' xs ++ [x]
 ```
+
+In turn, the append operator `++` used in the above definition of `reverse` can itself be defined using recursion on its first argument:
+```Haskell
+(++) :: [a] -> [a] -> [a]
+[] ++ ys     = ys
+(x:xs) ++ ys = x : xs ++ ys
+```
+That is, the recursive definition `++` formalises the idea that two lists can be appended by copying elements from the first list until it is exhausted, at which point the second list is joined on at the end.
+
