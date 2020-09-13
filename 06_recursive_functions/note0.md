@@ -31,3 +31,20 @@ product' :: Num a => [a] -> a
 product' []     = 1
 product' (n:ns) = n * product' ns
 ```
+The first equation states that the product of the empty list of numbers is one, which is appropriate because one is the identity for multiplication.
+
+The second equation states that the product of any non-empty list is given by multiplying the first number and the product of the remaining list.
+
+The library function `length` can be defined using the same pattern of recursion as `product`:
+```Haskell
+length' :: [a] -> Int
+length' []     = 0
+length' (_:xs) = 1 + length' xs
+```
+
+The library function that reverses a list. This function can be defined using recursion as follows:
+```Haskell
+reverse' :: [a] -> [a]
+reverse' []     = []
+reverse' (x:xs) = reverse' xs ++ [x]
+```
