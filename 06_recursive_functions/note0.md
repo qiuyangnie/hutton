@@ -12,9 +12,9 @@ fac 0 = 1
 fac n = n * fac (n-1)
 ```
 
-The first equation states that the factorial of zero is one, and is called a ***base case***.
+* The first equation states that the factorial of zero is one, and is called a ***base case***.
 
-The second equation states that the factorial of any other number is given by the product of that number and the factorial of its predecessor, and is called a ***recursive case***.
+* The second equation states that the factorial of any other number is given by the product of that number and the factorial of its predecessor, and is called a ***recursive case***.
 
 As another example of recursion on integers, consider the multiplication operator `*` used above. For non-negative integers it can also be defined using recursion on either of its two arguments, such as the second:
 ```Haskell
