@@ -22,7 +22,7 @@ As another example of recursion on integers, consider the multiplication operato
 m * 0 = 0
 m * n = m + m * (n-1)
 ```
-That is, the recursive definition for the `*` operator formalises the idea that multiplication can be reduced to repeated addition.
+* That is, the recursive definition for the `*` operator formalises the idea that multiplication can be reduced to repeated addition.
 
 ## Recursion on lists
 The library function `product` used in the preceding section can be defined as follows:
@@ -55,5 +55,5 @@ In turn, the append operator `++` used in the above definition of `reverse` can 
 [] ++ ys     = ys
 (x:xs) ++ ys = x : xs ++ ys
 ```
-That is, the recursive definition `++` formalises the idea that two lists can be appended by copying elements from the first list until it is exhausted, at which point the second list is joined on at the end.
+* That is, the recursive definition `++` formalises the idea that two lists can be appended by copying elements from the first list until it is exhausted, at which point the second list is joined on at the end.
 
