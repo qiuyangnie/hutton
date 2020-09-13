@@ -66,3 +66,10 @@ insert x (y:ys)
    | otherwise  = y : insert x ys 
 ```
 * That is, inserting a new element into an empty list gives a singleton list, while for a non-empty list the result depends upon the ordering of the new element `x` and the head of the list `y`. In particular, if `x <= y` then the new element `x` is simply prepended to the start of the list, otherwise the head `y` becomes the first element of the resulting list, and we then proceed to insert the new element into the tail of the given list.
+
+Using `insert` we can now define a function that implements ***insertion sort***, in which the empty list is already sorted, and any non-empty list is sorted by inserting its head into the list that results from sorting its tail:
+```Haskell
+isort :: Ord a => [a] -> [a]
+isort []     = []
+isort (x:xs) = insert x (isort xs)
+```
