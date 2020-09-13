@@ -23,3 +23,11 @@ m * 0 = 0
 m * n = m + m * (n-1)
 ```
 That is, the recursive definition for the `*` operator formalises the idea that multiplication can be reduced to repeated addition.
+
+## Recursion on lists
+The library function `product` used in the preceding section can be defined as follows:
+```Haskell
+product' :: Num a => [a] -> a
+product' []     = 1
+product' (n:ns) = n * product' ns
+```

@@ -9,3 +9,7 @@ fac' n = n * fac' (n-1)
 fac'' :: Int -> Int
 fac'' 0 = 1                     -- one is the identity for multiplication.
 fac'' n = n * fac''(n-1)
+
+product' :: Num a => [a] -> a
+product' []     = 1
+product' (n:ns) = n * product' ns
