@@ -7,7 +7,7 @@ add x y = x + y
 ```
 means
 ```Haskell
-add : Int -> (Int -> Int)
+add :: Int -> (Int -> Int)
 add = \x -> (\y -> x + y)
 ```
 and states that `add` is a function that takes an integer `x` and returns a function, which in turn takes another integer `y` and returns their sum `x + y`. In Haskell, it is also permissible to define functions that take functions as arguments. For example, a function that takes a function and a value, and returns the result of applying the function twice to the value, can be defined as follows:
@@ -27,3 +27,4 @@ Moreover, because `twice` is a curried function, it can be partially applied wit
 Formally speaking, a function that takes a function as an argument or returns a function as a result is called a ***higher-order function***. In practice, however, because the term curried already exists for returning functions as results, the term higher-order is often just used for taking functions as arguments. It is this latter interpretation that is the subject of this chapter.
 
 Using higher-order functions considerably increases the power of Haskell, by allowing common programming patterns to be encapsulated as functions within the language itself. More generally, higher-order functions can be used to define domain-specific languages within Haskell. For example, in this chapter we present a simple language for a range of other domains, including interactive programming, effectful programming, and building parsers.
+
