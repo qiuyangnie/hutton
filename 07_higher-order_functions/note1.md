@@ -53,3 +53,10 @@ filter p (x:xs) | p x       = x : filter p xs
                 | otherwise = filter p xs
 ```
 * That is, selecting all elements that satisfy a predicate from the empty list gives the empty list, while for a non-empty list the result depends upon whether the head satisfies the predicate. If it does then the head is retained and we then proceed to filter elements from the tail of the list, otherwise the head is discarded and we simply filter elements from the tail.
+___
+The functions `map` and `filter` are often used together in programs, with `filter` being used to select certain elements from a list, each of which is then transformed using `map`. For example, a function that returns the sum of the squares of the even integers from a list could be defined as follows:
+```Haskell
+sumsqreven :: [Int] -> Int
+sumsqreven = \ns -> sum (map (^2) (filter even ns))
+```
+___
