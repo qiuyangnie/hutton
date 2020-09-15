@@ -60,3 +60,24 @@ sumsqreven :: [Int] -> Int
 sumsqreven = \ns -> sum (map (^2) (filter even ns))
 ```
 ___
+We conclude this section by illustrating a number of other higher-order functions for processing lists that are defined in the standard prelude.
+* Decide if all elements of a list satisfy a predicate:
+```Shell
+Prelude> all even [2,4,6,8]
+True
+```
+* Decide if any element of a list satisfies a predicate:
+```Shell
+Prelude> any odd [2,4,6,8]
+False
+```
+* Select elements from a list while they satisfy a predicate:
+```Shell
+Prelude> takeWhile even [2,4,6,7,8]
+[2,4,6]
+```
+* Remove elements from a list while they satisfy a predicate:
+```Shell
+Prelude> dropWhile odd [1,3,5,6,7]
+[6,7]
+```
