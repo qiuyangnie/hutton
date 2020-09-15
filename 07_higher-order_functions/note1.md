@@ -31,3 +31,26 @@ map f (x:xs) = f x : map f xs
 ```
 * That is, applying a function to all elements of the empty list gives the empty list, while for a non-empty list the function is simply applied to the head of the list, and we then proceed to apply the function to all elements of the tail. The original definition for `map` using a list comprehension is simpler, but the recursive definition is preferable for reasoning purposes (see chapter 16).
 
+
+Another useful higher-order library function is `filter`, which selects all elements of a list that satisfy a predicate, where a predicate (or property) is a function that returns a logical value. As with `map`, the function `filter` also has a simple definition using a list comprehension:
+```Haskell
+filter :: (a -> Bool) -> [a] -> [a]
+filter p xs = [x | x <- xs, p x]
+```
+* That is, `filter p xs` returns the list of all values `x` such that `x` is an element of the list `xs` and the value of `p x` is `True`. For example:
+```Shell
+Prelude> filter even [1..10]
+[2,4,6,8,10]
+Prelude> filter (> 5) [1..10]
+[6,7,8,9,10]
+Prelude> filter (/= ' ') "abc def ghi"
+"abcdefghi"
+```
+As with `map`, the function `filter` can be applied to lists of any type, and can be defined using recursion for the purposes of reasoning:
+```Haskell
+filter :: (a -> Bool) -> [a] -> [a]
+filter p []                 = []
+filter p (x:xs) | p x       = x : filter p xs
+                | otherwise = filter p xs
+```
+* That is, selecting all elements that satisfy a predicate from the empty list gives the empty list, while for a non-empty list the result depends upon whether the head satisfies the predicate. If it does then the head is retained and we then proceed to filter elements from the tail of the list, otherwise the head is discarded and we simply filter elements from the tail.
