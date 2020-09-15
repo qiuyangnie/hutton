@@ -30,8 +30,7 @@ map f []     = []
 map f (x:xs) = f x : map f xs
 ```
 * That is, applying a function to all elements of the empty list gives the empty list, while for a non-empty list the function is simply applied to the head of the list, and we then proceed to apply the function to all elements of the tail. The original definition for `map` using a list comprehension is simpler, but the recursive definition is preferable for reasoning purposes (see chapter 16).
-
-
+___
 Another useful higher-order library function is `filter`, which selects all elements of a list that satisfy a predicate, where a predicate (or property) is a function that returns a logical value. As with `map`, the function `filter` also has a simple definition using a list comprehension:
 ```Haskell
 filter :: (a -> Bool) -> [a] -> [a]
