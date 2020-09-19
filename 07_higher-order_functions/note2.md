@@ -52,3 +52,52 @@ gives the result
 1 + (2 + (3 + 0))
 ```
 in which `:` and `[]` have been replaced by `+` and `0`, respectively. Hence, the definition `sum = foldr (+) 0` states that summing a list of numbers amounts to replacing each cons by addition and the empty list by zero.
+
+Even though `foldr` encapsulates a simple pattern of recursion, it can be used to define many more functions than might first be expected. First of all, recall the following definition for the library function `length`:
+```Haskell
+length :: [a] -> Int
+length []     = 0
+length (_:xs) = 1 + length xs
+```
+For example, applying `length` to the list
+```Haskell
+1 : (2 : (3 : []))
+```
+gives the result
+```Haskell
+1 + (1 + (1 + 0))
+```
+* That is, calculating the length of a list amounts to replacing each cons by the addition that adds one to its second argument, and the empty list by zero. Hence, the definition for `length` can be rewritten using `foldr`:
+```Haskell
+length :: [a] -> Int
+length = foldr (\_ n -> 1+n) 0
+```
+
+Now let us consider the library function that reverses a list, which can be defined in a simple manner using explicit recursion as follows:
+```Haskell
+reverse :: [a] -> [a]
+reverse []     = []
+reverse (x:xs) = reverse xs ++ [x]
+```
+For example, applying `reverse` to the list 
+```Haskell
+1 : (2 : (3 : []))
+```
+gives the result
+```Haskell
+(([] ++ [3]) ++ [2]) ++ [1]
+```
+It is perhaps not clear from the definition, or the example, how `reverse` can be defined using `foldr`. However, if we define a function `snoc x xs = xs ++ [x]` that adds a new element at the end of a list rather than at the start (snoc is cons backwards), then `reverse` can be defined as
+```Haskell
+reverse []     = []
+reverse (x:xs) = snoc x (reverse xs) 
+```
+from which a definition using `foldr` is then immediate:
+```Haskell
+reverse :: [a] -> [a]
+reverse = foldr snoc []
+```
+We conclude this section by noting that the name ***fold right*** reflects the use of an operator that is assumed to associate to the right. For example, evaluating `foldr (+) 0 [1,2,3]` gives the result `1+(2+(3+0))`, in which the bracketing specifies that addition is assumed to associate to the right. More generally, the behaviour of `foldr` can be summarised as follows:
+```Haskell
+foldr (#) v [x0,x1,...,xn] = x0 # (x1 # (... (xn # v) ...))
+```
