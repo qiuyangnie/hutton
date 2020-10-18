@@ -71,3 +71,30 @@ safediv m n = Just' (m `div` n)
 safehead :: [a] -> Maybe' a
 safehead [] = Nothing'
 safehead xs = Just' (head xs)
+
+
+-- Recursive Types:
+-- In Haskell, new types can be declared in terms of themselves. That is, types can be recursive.
+-- Nat is a new type, with constructors Zero :: Nat and Succ :: Nat -> Nat.
+data Nat = Zero | Succ Nat
+           deriving Show
+-- A value of type Nat is either Zero, or of the form Succ n where n :: Nat. That is, Nat contains the following infinite sequence of values: Zero, Succ Zero, Succ (Succ Zero).
+-- We can think of values of type Nat as natural numbers, where Zero represents 0, and Succ represents the successor function 1+.
+-- Using recursion, it is easy to define functions that convert between values of type Nat and Int:
+nat2int :: Nat -> Int
+nat2int Zero     = 0
+nat2int (Succ n) = 1 + nat2int n
+
+int2nat :: Int -> Nat
+int2nat 0 = Zero
+int2nat n = Succ (int2nat (n-1))
+
+-- Two naturals can be added by converting them to integers, adding, and then converting back:
+add :: Nat -> Nat -> Nat
+add m n = int2nat (nat2int m + nat2int n)
+
+-- However, using recursion the function add can be defined without the need for conversions:
+add' :: Nat -> Nat -> Nat
+add' Zero     n = n
+add' (Succ m) n = Succ (add m n)  
+
